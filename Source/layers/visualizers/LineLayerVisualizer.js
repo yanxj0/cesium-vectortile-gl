@@ -172,7 +172,7 @@ export class LineLayerVisualizer extends ILayerVisualizer {
         const boundingSphere = Cesium.BoundingSphere.fromPoints(positions)
         const cartographic = Cesium.Cartographic.fromCartesian(boundingSphere.center)
         cartographic.height = 0//包围盒中心可能高于或者低于地面，需要避免双击锁定视角时进入地下
-        const center = Cesium.Cartographic.toCartesian(cartographic, null, cartesian)
+        const center = Cesium.Cartographic.toCartesian(cartographic, null, new Cesium.Cartesian3())
 
         const instance = new Cesium.GeometryInstance({
             geometry: new Cesium.PolylineGeometry({
