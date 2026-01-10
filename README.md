@@ -1,6 +1,6 @@
 ### 🌍 **cesium-vectortile-gl**
 
- **cesium-vectortile-gl** 是专为 **CesiumJS** 设计的开源矢量瓦片渲染库。原生 Primitive 实现，**不依赖 ImageryProvider 和 第三方矢量瓦片渲染器**，支持 MVT/PBF 与 GeoJSON，兼容 MapLibre 样式规范，可渲染线/面/文字，支持虚线、贴地、合批优化与 GPU 剔除。
+**cesium-vectortile-gl** 是专为 **CesiumJS** 设计的开源矢量瓦片渲染库。原生 Primitive 实现，**不依赖 ImageryProvider 和 第三方矢量瓦片渲染器**，支持 MVT/PBF 与 GeoJSON，兼容 MapLibre 样式规范，可渲染线/面/文字，支持虚线、贴地、合批优化与 GPU 剔除。
 
 #### ✨ 核心特性
 
@@ -42,7 +42,13 @@ npm install --save-dev
 npm run build
 ```
 
-### 安装
+源码调试
+
+```shell
+npm run dev
+```
+
+## 安装
 
 ```shell
 npm install @mesh3d/cesium-vectortile-gl
@@ -58,6 +64,19 @@ const tileset = new VectorTileset({
 });
 
 viewer.scene.primitives.add(tileset);
+```
+
+**注意**：请确保通过`window.Cesium`能够访问到可用的 Cesium 包，例如：
+
+```js
+import * as Cesium from "cesium";
+window.Cesium = Cesium;
+```
+
+或者在 html 中通过`script`标签引入 Cesium.js，例如
+
+```html
+<script src="libs/cesium/Build/CesiumUnminified/Cesium.js"></script>
 ```
 
 ## 扩展
@@ -89,7 +108,7 @@ registerRenderLayer("fill", FillRenderLayer, FillLayerVisualizer);
 
 #### 扩展数据源类型
 
-数据类型的扩展采用面向接口，只需要按`ISource`的约定编写必须实现的方法（init、requetTile）即可。
+数据类型的扩展采用面向接口，只需要按`ISource`的约定编写必须实现的方法（init、requestTile）即可。
 
 - **constructor(styleSource, path = '')** 构造函数，第一个参数接收数据源配置，第二个参数接收样式路径（如果 style 传入 url 的话），可以用于支持相对路径
 - **init** 初始化数据源
@@ -103,6 +122,7 @@ import { registerSource } from "@mesh3d/cesium-vectortile-gl";
 
 registerSource("sourceType", XXXSource);
 ```
+
 - `第一个参数`为数据源类型名称，如 raster，**必选**
 - `第二个参数`为数据源类，**必选**
 
