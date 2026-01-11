@@ -1,6 +1,6 @@
 {
   "name": "@mesh3d/cesium-vectortile-gl",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "CesiumJS 矢量瓦片渲染库",
   "main": "dist/cesium-vectortile-gl.js",
   "module": "index.js",
@@ -12,6 +12,10 @@
     "build": "vite build",
     "dev": "vite dev",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mesh-3d/cesium-vectortile-gl.git"
   },
   "author": {
     "name": "mesh-3d",
