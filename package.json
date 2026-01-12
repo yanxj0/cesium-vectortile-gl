@@ -1,8 +1,8 @@
 {
   "name": "@mesh3d/cesium-vectortile-gl",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CesiumJS 矢量瓦片渲染库",
-  "main": "dist/cesium-vectortile-gl.js",
+  "main": "dist/cvt-gl.js",
   "module": "index.js",
   "private": false,
   "publishConfig": {
@@ -21,10 +21,11 @@
     "name": "mesh-3d",
     "url": "https://github.com/mesh-3d"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "cesium": "^1.136.0",
-    "vite": "^7.3.0"
+    "vite": "^7.3.0",
+    "vite-plugin-license": "^0.0.2"
   },
   "dependencies": {
     "@mapbox/vector-tile": "^2.0.4",

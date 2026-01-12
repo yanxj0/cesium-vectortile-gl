@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import * as path from 'path';
+import license from 'vite-plugin-license';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -29,5 +30,12 @@ export default defineConfig({
     },
     esbuild: {
         drop: ['debugger']
-    }
+    },
+    plugins: [
+        license({
+          thirdParty: {
+            output: './dist/THIRD-PARTY-LICENSES.txt',
+          }
+        })
+      ]
 });

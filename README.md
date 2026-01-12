@@ -24,9 +24,24 @@
 
 ---
 
-> 📦 **MIT 许可证 · 欢迎贡献 · 由 [mesh-3d](https://github.com/mesh-3d) 社区维护**
+> 📦 **Apache-2.0 许可证 · 欢迎贡献 · 由 [mesh-3d](https://github.com/mesh-3d) 社区维护**
 
 ---
+
+#### 📜 许可证变更：MIT → Apache License 2.0
+
+从 **0.3.0 版本**起，本项目已将许可证由 **MIT 许可证** 更改为 **Apache License 2.0**。
+
+此次变更旨在：
+- 为贡献者和用户提供明确的**专利授权与保护**，
+- 对**商业使用和再分发**提供更清晰的法律条款，
+- 与相关地理空间项目（如 CesiumJS）的许可策略保持一致。
+
+Apache 2.0 仍是一个**宽松且对商业友好的许可证**——您依然可以自由地使用、修改和分发本软件（包括用于专有产品），只需保留原始版权声明和免责声明即可。
+
+本次变更后的新贡献均遵循 Apache 2.0 条款。此前发布的版本（MIT 许可）仍按其原始许可证条款继续有效。
+
+详情请参见 [LICENSE](./LICENSE.md) 文件。
 
 ## 构建
 
@@ -125,6 +140,17 @@ registerSource("sourceType", XXXSource);
 
 - `第一个参数`为数据源类型名称，如 raster，**必选**
 - `第二个参数`为数据源类，**必选**
+
+## 依赖
+
+本项目依赖：
+
+- [@mapbox/vector-tile](https://github.com/mapbox/vector-tile-js)(BSD-3-Clause)
+- [@maplibre/maplibre-gl-style-spec](https://github.com/maplibre/maplibre-style-spec)(ISC)
+- [@maplibre/vt-pbf](https://github.com/maplibre/vt-pbf)(MIT)
+- [geojson-vt](https://github.com/mapbox/geojson-vt)(ISC)
+- [maplibre-gl](https://github.com/maplibre/maplibre-gl-js)(BSD-3-Clause)
+- [pbf](https://github.com/mapbox/pbf)(BSD-3-Clause)
 
 ## 相关项目
 
