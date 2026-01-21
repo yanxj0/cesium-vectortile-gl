@@ -24,7 +24,6 @@ class PointLayerVisualizer extends ILayerVisualizer {
 
     let batchId = 0;
     layer.firstBatchId = batchId;
-    console.time("add_points");
     for (const feature of features) {
       const featureType = VectorTileFeature.types[feature.type];
       if (!["Point", "MultiPoint"].includes(featureType)) continue;
@@ -47,7 +46,7 @@ class PointLayerVisualizer extends ILayerVisualizer {
         const position = Cesium.Cartesian3.fromDegrees(
           worldPt[0],
           worldPt[1],
-          0
+          0,
         );
 
         this.pointCollection.add({
@@ -63,7 +62,7 @@ class PointLayerVisualizer extends ILayerVisualizer {
             1000.0, // 近处（1000米内）保持正常大小
             2.0, // 倍率，可调大一点让近处更明显
             900000.0, // 远处（500km）缩小到原大小的 0.1
-            0.01 // 远处缩小到 10%
+            0.01, // 远处缩小到 10%
           ),
         });
       });
@@ -81,7 +80,6 @@ class PointLayerVisualizer extends ILayerVisualizer {
     }
     layer.lastBatchId = batchId - 1;
     this.layers.push(layer);
-    console.timeEnd("add_points");
   }
 
   update(frameState, tileset) {
