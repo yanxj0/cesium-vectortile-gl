@@ -24,7 +24,7 @@
 
 ---
 
-> 📦 **Apache-2.0 许可证 · 欢迎贡献 · 由 [mesh-3d](https://github.com/mesh-3d) 社区维护**
+> 📦 **Apache-2.0 许可证 · 欢迎贡献 · 由 [mesh-3d](https://github.com/mesh-3d) 社区维护** · **QQ交流群 1064447844**
 
 ---
 
