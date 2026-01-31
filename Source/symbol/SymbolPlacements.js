@@ -51,6 +51,10 @@ export class SymbolPlacements {
 
             for (const label of labels) {
                 const position = label.computeScreenSpacePosition(scene, scratchScreenSpacePosition)
+                if (!position) {//可能未准备就绪，先标记为可以摆放，确保Cesium能生成文字
+                    label.vtPlaceable = true
+                    continue
+                }
                 /**@type {Cesium.BoundingRectangle} */
                 const box = Cesium.Label.getScreenSpaceBoundingBox(label, position, scratchScreenSpaceBoundingBox)
 
