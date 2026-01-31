@@ -1,3 +1,4 @@
+import { ILayerVisualizer } from "./layers/visualizers/ILayerVisualizer"
 import { IRenderLayer } from "./layers/IRenderLayer"
 
 export class VectorTileRenderList {
@@ -14,6 +15,8 @@ export class VectorTileRenderList {
         this.tileIdCommands = []
         /**@type {Cesium.DrawCommand[]} */
         this.tileCommands = []
+        /**@type {ILayerVisualizer[]} */
+        this.visualizers = []
     }
 
     init() {
@@ -25,6 +28,7 @@ export class VectorTileRenderList {
         }
         this.tileIdCommands.length = 0
         this.tileCommands.length = 0
+        this.visualizers.length = 0
     }
 
     beginFrame() {
@@ -34,6 +38,7 @@ export class VectorTileRenderList {
         }
         this.tileIdCommands.length = 0
         this.tileCommands.length = 0
+        this.visualizers.length = 0
     }
 
     push(renderLayer) {

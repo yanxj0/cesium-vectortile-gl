@@ -458,7 +458,7 @@ export class VectorTileLOD {
         }
 
         for (const visualizer of this.visualizers) {
-            visualizer.render(frameState, tileset)
+            renderList.visualizers.push(visualizer)
         }
 
         //瓦片id纹理

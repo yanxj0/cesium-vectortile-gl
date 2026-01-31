@@ -207,9 +207,13 @@ export class SymbolLayerVisualizer extends ILayerVisualizer {
         for (const layer of layers) {
             for (let i = 0; i < layer.labels.length; i++) {
                 const style = layer.style, zoom = tileset.zoom
-                layer.labels[i].show = true
                 if (layer.visibility === 'none' || zoom < style.minzoom || zoom >= style.maxzoom) {
                     layer.labels[i].show = false
+                }
+                else {
+                    //vtPlaceable 为碰撞检测结果，true 表示可以摆放到屏幕
+                    //碰撞检测在 symbol/SymbolPlacements.js 里完成
+                    layer.labels[i].show = !!layer.labels[i].vtPlaceable
                 }
             }
         }

@@ -5,6 +5,7 @@ import { VectorTileRenderList } from "./VectorTileRenderList"
 import { Sources } from "./sources"
 import { ISource } from "./sources/ISource"
 import { warnOnce } from "maplibre-gl/src/util/util"
+import { SymbolPlacements } from "./symbol/SymbolPlacements"
 
 export class VectorTileset {
     /**
@@ -39,6 +40,10 @@ export class VectorTileset {
         /**@type {Cesium.Texture} */
         this.tileIdTexture = null
         this.zoom = 0
+        /**
+         * 负责符号碰撞检测（自动避让），SymbolPlacements 内部基于 maplibre-gl GridIndex 实现
+         */
+        this._symbolPlacements = new SymbolPlacements()
 
         requestAnimationFrame(() => {
             this.init()
@@ -197,10 +202,15 @@ export class VectorTileset {
 
         //渲染图层分组、排序
         const orderedRenderLayers = renderList.getList()
+        //符号碰撞检测
+        this._symbolPlacements.update(frameState, orderedRenderLayers, this.zoom)
         //获取渲染命令（DrawCommand），渲染图层内部可以使用Primitive、PolylineCollection、LabelCollection、BillboardCollection等API，
         //也可以自定义DrawCommand
         for (const renderLayer of orderedRenderLayers) {
             renderLayer.render(frameState, this)
+        }
+        for (const visualizer of renderList.visualizers) {
+            visualizer.render(frameState, this)
         }
         //瓦片颜色、深度
         frameState.commandList.push(...renderList.tileCommands)
