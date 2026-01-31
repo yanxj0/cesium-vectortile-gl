@@ -1,11 +1,11 @@
 ### 🌍 **cesium-vectortile-gl**
 
-**cesium-vectortile-gl** 是专为 **CesiumJS** 设计的开源矢量瓦片渲染库。原生 Primitive 实现，**不依赖 ImageryProvider 和 第三方矢量瓦片渲染器**，支持 MVT/PBF 与 GeoJSON，兼容 MapLibre 样式规范，可渲染线/面/文字，支持虚线、贴地、合批优化与 GPU 剔除。
+**cesium-vectortile-gl** 是专为 **CesiumJS** 设计的开源矢量瓦片渲染库。原生 Primitive 实现，**不依赖 ImageryProvider 和 第三方矢量瓦片渲染器**，支持 MLT/MVT/PBF 与 GeoJSON，兼容 MapLibre 样式规范，可渲染线/面/文字，支持虚线、贴地、合批优化与 GPU 剔除。
 
 #### ✨ 核心特性
 
 - ✅ **原生 Cesium 渲染**：使用 `Primitive`、`PolylineGeometry` 和自定义 `Appearance`，深度集成 Cesium 渲染管线
-- ✅ **多源支持**：加载 **MVT (PBF)** 矢量瓦片 或 **GeoJSON** 数据（通过 `geojson-vt` 动态切片）
+- ✅ **多源支持**：加载 **MLT/MVT (PBF)** 矢量瓦片 或 **GeoJSON** 数据（通过 `geojson-vt` 动态切片）
 - ✅ **MapLibre 样式兼容**：完整解析 `maplibre-gl-style-spec` 的样式表达式（颜色、透明度、线型、文本等）
 - ✅ **丰富图层类型**：支持 `background` / `fill` / `line` / `symbol` 四大基础图层，含**虚线**（`line-dasharray`）、本地字体、文字大小、显隐控制
 - ✅ **三维场景融合**：可与 `Entity`、`Model`、贴地线/面等 Cesium 对象共存，实现真三维 GIS 可视化
@@ -15,7 +15,7 @@
 
 #### 🧠 技术栈亮点
 
-- 解析：`@mapbox/vector-tile` + `@maplibre/vt-pbf`
+- 解析：`@mapbox/vector-tile` + `maplibre-gl` + `@maplibre/vt-pbf`
 - 切片：`geojson-vt`
 - 样式：`@maplibre/maplibre-gl-style-spec`
 - 投影与细分：复用 `maplibre-gl` 的线/面投影逻辑
