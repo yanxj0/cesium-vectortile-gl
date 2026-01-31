@@ -1,6 +1,7 @@
 import { ISource } from "./ISource";
 import { registerSource } from "./registerSource";
-import { VectorTile } from '@mapbox/vector-tile'
+import { VectorTile, VectorTileFeature } from '@mapbox/vector-tile'
+import { MLTVectorTile } from 'maplibre-gl/src/source/vector_tile_mlt'
 import Pbf from 'pbf'
 
 export class VectorSource extends ISource {
@@ -34,7 +35,7 @@ export class VectorSource extends ISource {
 
         try {
             const tileBuf = await (fetch(tileUrl).then(res => res.arrayBuffer()));
-            const tileData = new VectorTile(new Pbf(tileBuf))
+            const tileData = sourceParams.encoding == 'mlt' ? new MLTVectorTile(tileBuf) : new VectorTile(new Pbf(tileBuf))
             return tileData
         } catch (err) {
             this.errorEvent.raiseEvent(err)

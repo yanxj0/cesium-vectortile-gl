@@ -278,6 +278,10 @@ export class VectorTileLOD {
                     if (styleLayer.filter && !styleLayer.filter.filter({ zoom: this.z }, feature)) {
                         continue
                     }
+                    //MLT的Feature类没有实现toGeoJSON方法，直接使用MVT的方法
+                    if (!feature.toGeoJSON) {
+                        feature.toGeoJSON = MVT.VectorTileFeature.prototype.toGeoJSON
+                    }
                     features.push(feature)
                 }
                 if (!features.length) continue
