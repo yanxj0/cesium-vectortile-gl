@@ -63,6 +63,10 @@ export class SymbolPlacements {
         layer.tile.z
       )
       const textOverlapMode = getOverlapMode(textOverlap, textAllowOverlap)
+      const textPadding = style.layout.getDataConstValue(
+        'text-padding',
+        layer.tile.z
+      )
 
       for (const label of labels) {
         const position = label.computeScreenSpacePosition(
@@ -81,10 +85,10 @@ export class SymbolPlacements {
           scratchScreenSpaceBoundingBox
         )
 
-        const tlX = box.x,
-          tlY = box.y,
-          brX = tlX + box.width,
-          brY = tlY + box.height
+        const tlX = box.x - textPadding,
+          tlY = box.y - textPadding,
+          brX = tlX + box.width + textPadding,
+          brY = tlY + box.height + textPadding
         if (!grid.hitTest(tlX, tlY, brX, brY, textOverlapMode, null)) {
           //二维包围盒碰撞检测
           const textKey = { overlapMode: textOverlapMode }
