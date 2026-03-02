@@ -206,6 +206,10 @@ export class SymbolLayerVisualizer extends ILayerVisualizer {
         sourceFeature
       )
 
+      if (!textSize || !isFinite(textSize) || Number(textSize) <= 0) {
+        continue
+      }
+
       const geometryType = feature.geometry.type
       const coordinates = feature.geometry.coordinates
       if (geometryType == 'Point') {
