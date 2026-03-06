@@ -13,6 +13,7 @@
 - ✅ **GPU 精准剔除**：利用 FBO + RTT 技术生成瓦片 ID 纹理，在 GPU 中高效剔除不可见矢量片段
 - ✅ **高度可扩展**：提供清晰接口，轻松接入新数据源（如 TopoJSON）或自定义图层类型（如热力图、流线）
 - ✅ **文字符号自动避让**：使用 `maplibre-gl` `GridIndex`类，结合 Cesium.Label 屏幕空间位置和包围盒计算API，实现符号碰撞检测（自动避让）
+- ✅ **样式动态修改**：提供`setLayoutProperty`、`setPaintProperty`、`setFilter`等`样式修改API`，可动态控制图层`显隐`、`颜色`、`透明度`
 
 #### 🧠 技术栈亮点
 
@@ -81,6 +82,34 @@ const tileset = new VectorTileset({
 })
 
 viewer.scene.primitives.add(tileset)
+```
+
+### 样式修改示例
+
+```js
+tileset.readyEvent.addEventListener(() => {
+  // 1、修改绘制属性（颜色、透明度），不会触发强制刷新，实时变化
+  tileset.setPaintProperty('background', 'background-color', 'skyblue')
+  tileset.setPaintProperty('geolines', 'line-color', 'green')
+  tileset.setPaintProperty('us_states:fill', 'fill-color', 'red')
+  tileset.setPaintProperty('countries-label', 'text-color', 'blue')
+
+  // 2、修改布局属性，除 visibility 外，都会触发强制刷新
+  // 2.1、布局属性修改：图层显隐，不会触发强制刷新
+  tileset.setLayoutProperty('coastline', 'visibility', 'none')
+  // 2.2、布局属性修改（非visibility）：字体大小修改，会触发强制刷新
+  tileset.setLayoutProperty('countries-label', 'text-size', {
+    stops: [
+      [2, 12],
+      [4, 16],
+      [6, 20]
+    ]
+  })
+
+  // 3、修改过滤器。
+  //和setLayoutProperty一样（visibility例外）会触发强制刷新
+  tileset.setFilter('geolines', null)
+})
 ```
 
 ### 可选：Web Worker 多线程瓦片处理
